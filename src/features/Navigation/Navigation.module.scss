@@ -1,0 +1,11 @@
+.navigation{
+  width: 25rem;
+  padding: 0.5rem;
+  & > ul{
+    & > li{
+      & > span{
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
