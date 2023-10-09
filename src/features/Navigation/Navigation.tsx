@@ -1,7 +1,9 @@
 import React from "react";
 import type { MenuProps } from "antd";
-import { Menu } from "antd";
+import { Button, Menu } from "antd";
 import classes from "./Navigation.module.scss";
+import { useBoundActions } from "../../app/store";
+import { authorizationActions } from "../Authorization/Authorization.slice";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -18,14 +20,19 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem("HTML", "1"),
-  getItem("CSS", "2"),
-  getItem("JavaScript", "3"),
-  getItem("Option 3", "4"),
-  getItem("Option 3", "5"),
+  getItem("Учить новые вопросы", "1"),
+  getItem("Повторить вопросы", "2"),
+  getItem("Панель админа", "3"),
 ];
-
+const allActions = {
+  ...authorizationActions,
+};
 const Navigation: React.FC = () => {
+  const boundActions = useBoundActions(allActions);
+
+  const handleLogout = () => {
+    boundActions.setIsAuth(false);
+  };
   return (
     <div className={classes.navigation}>
       <Menu
@@ -34,6 +41,9 @@ const Navigation: React.FC = () => {
         theme="dark"
         items={items}
       />
+      <Button className="button" ghost size="large" onClick={handleLogout}>
+        Выход
+      </Button>
     </div>
   );
 };

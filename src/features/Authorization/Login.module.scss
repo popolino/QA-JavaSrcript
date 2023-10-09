@@ -1,0 +1,117 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  & > div {
+    box-shadow: 0 4px 10px 0 rgb(2, 3, 4, 0.5%);
+    display: flex;
+    width: max-content;
+    height: max-content;
+    background: white;
+    overflow: hidden;
+    border-radius: 2rem;
+    @media (max-width: 400px) {
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0;
+    }
+    & > img {
+      width: 35rem;
+      @media (max-width: 665px) {
+        display: none;
+      }
+    }
+  }
+
+}
+.right-container {
+  padding: 5rem;
+  width: 35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  & > div {
+    width: 100%;
+  }
+  & > h1 {
+    font-size: 3.3rem;
+    color: var(--background);
+    text-align: center;
+  }
+  & > label {
+    width: 100%;
+    & > span {
+      font-size: 1.2rem;
+    }
+  }
+  & > button {
+    width: 100%;
+  }
+}
+.bottom-container {
+  width: 100%;
+  padding: 0 2rem;
+  color: #001529;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  & > p,
+  a {
+    font-size: 1.1rem;
+  }
+  & > a {
+    color: var(--blue);
+  }
+  & > p {
+    color: var(--blue-gray);
+  }
+}
+.message {
+  z-index: 2;
+  position: absolute;
+  width: 100%;
+  margin-top: -1.75rem;
+  & > div {
+    position: absolute;
+    background: white;
+
+    z-index: 2;
+    &:first-child,
+    &:last-child {
+      width: 1.5rem;
+      height: 1.5rem;
+      left: 3rem;
+      transform: rotate(45deg);
+      top: -0.75rem;
+    }
+    &:nth-child(2) {
+      min-width: 9rem;
+      box-shadow: 0 0.1rem 0.4rem var(--white-main);
+      border-radius: 1.25rem;
+      display: flex;
+      align-items: center;
+      margin: 0;
+    }
+    &:first-child {
+      box-shadow: 0 0.1rem 0.4rem var(--white-main);
+    }
+  }
+  p {
+    padding: 0 1rem;
+    color: var(--blue-gray);
+    font-size: 1rem;
+    white-space: normal;
+    line-height: 1.5;
+  }
+}
+.input-form:last-child,
+.error {
+  margin-bottom: 2rem;
+}

@@ -1,15 +1,13 @@
 import React from "react";
 import "./assets/scss/reset.scss";
 import "./assets/scss/global.scss";
-import Navigation from "./features/Navigation/Navigation";
-import Main from "./features/Main/Main";
 import "./App.scss";
+import Router from "./routes/Router";
 
 function App() {
   return (
     <div className="container">
-      <Navigation />
-      <Main />
+      <Router />
     </div>
   );
 }

@@ -14,7 +14,7 @@ body,
   width: 100vw;
 }
 body{
-  background:  #001529;
+  background:  var(--background);
 }
 
 :focus, :active {

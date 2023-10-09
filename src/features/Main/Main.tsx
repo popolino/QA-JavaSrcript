@@ -32,6 +32,7 @@ const Main = () => {
         ))}
       <div className={classes.buttons}>
         <Button
+          className="button"
           type="primary"
           icon={<CheckOutlined />}
           size="large"
@@ -40,6 +41,7 @@ const Main = () => {
           Вспомнил
         </Button>
         <Button
+          className="button"
           ghost
           icon={<CloseOutlined />}
           size="large"

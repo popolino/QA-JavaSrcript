@@ -1,9 +1,26 @@
 :root {
   --pale-white: rgba(255, 255, 255, 0.45);
   --white-main: #c3ccd6;
-  --border: rgba(255, 255, 255, 0.0901960784)
+  --border: rgba(255, 255, 255, 0.0901960784);
+  --background: #001529;
+  --blue: #1677ff;
+  --blue-gray: #6c8899;
 }
 
 body {
   overflow: hidden;
+}
+
+
+.button{
+  & > span{
+    font-size: 1.5rem;
+    & > span{
+      & > svg{
+        font-size: 1.5rem;
+      }
+    }
+
+  }
+
 }
