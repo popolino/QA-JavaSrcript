@@ -1,7 +1,7 @@
 import React from "react";
 import { Input } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
-import classes from "./Login.module.scss";
+import classes from "./Authorization.module.scss";
 
 type TCustomTextFieldProps = {
   className?: string;
@@ -28,7 +28,7 @@ const CustomTextField: React.FC<TCustomTextFieldProps> = ({
       <div className={className}>
         {type === "input" ? (
           <Input
-            className={error ? classes["error"] : classes["input-form"]}
+            className={classes["input-form"]}
             placeholder={label}
             onChange={onChange}
             onBlur={onBlur}
@@ -37,7 +37,7 @@ const CustomTextField: React.FC<TCustomTextFieldProps> = ({
           />
         ) : (
           <Input.Password
-            className={error ? classes["error"] : classes["input-form"]}
+            className={classes["input-form"]}
             placeholder={label}
             status={error ? "error" : ""}
             onChange={onChange}

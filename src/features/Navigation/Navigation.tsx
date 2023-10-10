@@ -32,6 +32,7 @@ const Navigation: React.FC = () => {
 
   const handleLogout = () => {
     boundActions.setIsAuth(false);
+    boundActions.setLogout();
   };
   return (
     <div className={classes.navigation}>

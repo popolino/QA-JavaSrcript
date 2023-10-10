@@ -1,18 +1,16 @@
 import classes from "./Main.module.scss";
 import clsx from "clsx";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 
 import { TQuestion } from "../../state";
 
 const Question: React.FC<TQuestion> = ({
-  id,
   question,
   answer,
   nameOfList,
   list,
 }) => {
   const [viewAnswer, setViewAnswer] = useState<boolean>(false);
-  useEffect(() => console.log(nameOfList), [nameOfList]);
   return (
     <>
       <div className={classes["top-container"]}>

@@ -1,12 +1,31 @@
 import Navigation from "../features/Navigation/Navigation";
 import Main from "../features/Main/Main";
-import React from "react";
+import React, { useEffect } from "react";
 import { useAppSelector } from "../app/hooks";
 import Login from "../features/Authorization/Login";
+import {
+  authorizationActions,
+  fetchAuthMe,
+} from "../features/Authorization/Authorization.slice";
+import { useBoundActions } from "../app/store";
+
+const allActions = {
+  fetchAuthMe,
+  ...authorizationActions,
+};
 
 const PrivateLayout = () => {
-  const isAuth = useAppSelector((state) => state.authorizationReducer.isAuth);
-  if (!isAuth) return <Login />;
+  const authUser = useAppSelector(
+    (state) => state.authorizationReducer.authUser
+  );
+  const boundActions = useBoundActions(allActions);
+
+  useEffect(() => {
+    boundActions.fetchAuthMe();
+  }, []);
+  console.log(authUser);
+
+  if (!authUser) return <Login />;
   return (
     <>
       <Navigation />

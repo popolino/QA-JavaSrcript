@@ -1,21 +1,24 @@
-import React from "react";
+import { useBoundActions } from "../../app/store";
+import { useAppSelector } from "../../app/hooks";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { Navigate } from "react-router-dom";
 import classes from "./Authorization.module.scss";
 import login from "../../assets/img/3249754.png";
-import { Button} from "antd";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import CustomInput from "./CustomInput";
-import { useAppSelector } from "../../app/hooks";
-import { authorizationActions, fetchLogin } from "./Authorization.slice";
-import { useBoundActions } from "../../app/store";
-import { Navigate } from "react-router-dom";
+import { Button } from "antd";
+import React from "react";
 import { TAuthFields } from "./Authorization.types";
+import {
+  authorizationActions,
+  fetchCreateUser,
+} from "./Authorization.slice";
 
 const allActions = {
-  fetchLogin,
+  fetchCreateUser,
   ...authorizationActions,
 };
 
-const Login = () => {
+const Registration = () => {
   const boundActions = useBoundActions(allActions);
   const isAuth = useAppSelector((state) => state.authorizationReducer.isAuth);
 
@@ -24,8 +27,8 @@ const Login = () => {
     defaultValues: { email: "", password: "" },
   });
   const onSubmit: SubmitHandler<TAuthFields> = (data) => {
+    boundActions.fetchCreateUser(data);
     console.log(data);
-    boundActions.fetchLogin(data);
   };
 
   if (isAuth) {
@@ -39,7 +42,7 @@ const Login = () => {
           className={classes["right-container"]}
           onSubmit={handleSubmit(onSubmit)}
         >
-          <h1>Добро пожаловать!</h1>
+          <h1>Создайте аккаунт</h1>
           <Controller
             name="email"
             control={control}
@@ -101,11 +104,11 @@ const Login = () => {
             size="large"
             disabled={!formState.isValid}
           >
-            Войти
+            Зарегистрироваться
           </Button>
           <div className={classes["bottom-container"]}>
-            <p>Еще нет аккаунта?</p>
-            <a href="/registration">Регистрация</a>
+            <p>Уже зарегистрированы?</p>
+            <a href="/login">Войти</a>
           </div>
         </form>
       </div>
@@ -113,4 +116,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Registration;

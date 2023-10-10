@@ -1,6 +1,7 @@
 import Main from "../features/Main/Main";
 import React from "react";
 import Login from "../features/Authorization/Login";
+import Registration from "../features/Authorization/Registration";
 
 export const routes = [
   //Public
@@ -10,6 +11,14 @@ export const routes = [
     public: true,
     component: <Login />,
   },
+  {
+    path: "registration",
+    label: "registration",
+    public: true,
+    component: <Registration />,
+  },
+
+  //Private
   {
     path: "main",
     label: "main",
