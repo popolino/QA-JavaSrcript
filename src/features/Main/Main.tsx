@@ -5,7 +5,10 @@ import Question from "./Question";
 import classes from "./Main.module.scss";
 import { Button } from "antd";
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
-const Main = () => {
+
+type TMain = {};
+
+const Main: React.FC<TMain> = ({}) => {
   const [page, setPage] = useState<number>(1);
 
   const handleConfirm = () => {
@@ -26,8 +29,6 @@ const Main = () => {
             id={question.id}
             answer={question.answer}
             categoryId={question.categoryId}
-            nameOfList={question.nameOfList}
-            list={question.list}
           />
         ))}
       <div className={classes.buttons}>

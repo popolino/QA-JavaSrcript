@@ -1,6 +1,6 @@
-.navigation{
+.navigation, .navigation-mobile{
+  border-right: 3px solid var(--border);
   height: 100%;
-  width: 25rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,5 +16,18 @@
   }
   & > button{
     width: 100%;
+
+  }
+}
+.navigation-mobile{
+  position: absolute;
+  background: var(--background);
+  z-index: 2;
+
+}
+
+@media (max-width: 700px) {
+  .navigation{
+    display: none;
   }
 }

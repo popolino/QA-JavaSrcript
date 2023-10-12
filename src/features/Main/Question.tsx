@@ -1,39 +1,46 @@
 import classes from "./Main.module.scss";
 import clsx from "clsx";
-import React, {  useState } from "react";
+import React, { useState } from "react";
+import {
+  EyeOutlined,
+} from "@ant-design/icons";
 
-import { TQuestion } from "../../state";
 
-const Question: React.FC<TQuestion> = ({
+type TQuestionProps = {
+  question: string;
+  answer: string;
+  id: number;
+  categoryId: number;
+};
+
+const Question: React.FC<TQuestionProps> = ({
   question,
   answer,
-  nameOfList,
-  list,
+  id,
+  categoryId,
 }) => {
   const [viewAnswer, setViewAnswer] = useState<boolean>(false);
+
   return (
     <>
       <div className={classes["top-container"]}>
-        <h1>раздел</h1>
+        <div>
+          <h1>HTML</h1>
+        </div>
         <p>{question}</p>
       </div>
+
       <div className={classes["bottom-container"]}>
         {!viewAnswer && (
           <button
             className={classes.square}
             onClick={() => setViewAnswer(true)}
           >
-            eye
+            <EyeOutlined />
           </button>
         )}
         <div className={clsx(classes.answer, { [classes.hide]: !viewAnswer })}>
           <p>{answer}</p>
-          {nameOfList && (
-            <>
-              <p>{nameOfList}</p>
-              <p>{list}</p>
-            </>
-          )}
         </div>
       </div>
     </>

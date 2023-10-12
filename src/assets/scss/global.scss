@@ -5,13 +5,43 @@
   --background: #001529;
   --blue: #1677ff;
   --blue-gray: #6c8899;
+  --blue-hover: #4096ff;
 }
 
 body {
   overflow: hidden;
 }
 
-
+.menu {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  margin: 3rem 3rem;
+  display: none;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  & > span {
+    & > svg {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+  @media (max-width: 700px){
+    display: flex;
+  }
+}
+.menu:hover {
+  & > h2 {
+    color: var(--blue-hover);
+    font-size: 2rem;
+  }
+  & > span {
+    & > svg {
+      fill: var(--blue-hover);
+    }
+  }
+}
 .button{
   & > span{
     font-size: 1.5rem;
