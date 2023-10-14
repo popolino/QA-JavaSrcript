@@ -1,14 +1,14 @@
 import React from "react";
 import classes from "./Authorization.module.scss";
 import login from "../../assets/img/3249754.png";
-import { Button} from "antd";
+import { Button } from "antd";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import CustomInput from "./CustomInput";
 import { useAppSelector } from "../../app/hooks";
 import { authorizationActions, fetchLogin } from "./Authorization.slice";
 import { useBoundActions } from "../../app/store";
 import { Navigate } from "react-router-dom";
-import { TAuthFields } from "./Authorization.types";
+import { TAuthFields } from "../../api/index.types";
 
 const allActions = {
   fetchLogin,
@@ -18,7 +18,6 @@ const allActions = {
 const Login = () => {
   const boundActions = useBoundActions(allActions);
   const isAuth = useAppSelector((state) => state.authorizationReducer.isAuth);
-
   const { handleSubmit, control, formState } = useForm<TAuthFields>({
     mode: "all",
     defaultValues: { email: "", password: "" },
@@ -27,7 +26,6 @@ const Login = () => {
     console.log(data);
     boundActions.fetchLogin(data);
   };
-
   if (isAuth) {
     return <Navigate to={"/"} />;
   }

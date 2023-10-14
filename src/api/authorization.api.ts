@@ -1,8 +1,4 @@
-import {
-  TAuthFields,
-  TAuthResponse,
-  TUser,
-} from "../features/Authorization/Authorization.types";
+import { TAuthFields, TAuthResponse, TUser } from "./index.types";
 import axiosInstance from "./index";
 
 export const authorizationApi = {

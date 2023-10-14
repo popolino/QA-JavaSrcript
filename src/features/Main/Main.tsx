@@ -17,7 +17,6 @@ const Main: React.FC<TMain> = ({}) => {
   const handleCancel = () => {
     setPage(page + 1);
   };
-
   return (
     <main>
       {questions

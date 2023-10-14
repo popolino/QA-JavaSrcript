@@ -4,10 +4,12 @@ import { useAppDispatch } from "./hooks";
 import { BoundActions } from "./store.types";
 import { useMemo } from "react";
 import bindActionCreators from "react-redux/es/utils/bindActionCreators";
+import { adminPanelReducer } from "../features/AdminPanel/AdminPanel.slice";
 
 export const store = configureStore({
   reducer: {
     authorizationReducer,
+    adminPanelReducer,
   },
 });
 

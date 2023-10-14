@@ -28,16 +28,16 @@ const PrivateLayout = () => {
 
   useEffect(() => {
     boundActions.fetchAuthMe();
+    console.log(authUser);
   }, []);
 
   if (!authUser) return <Login />;
   return (
     <>
-      {!openMenu && (
-        <div className="menu" onClick={handleToggleMenu}>
-          <MenuOutlined />
-        </div>
-      )}
+      <div className="menu" onClick={handleToggleMenu}>
+        <MenuOutlined />
+      </div>
+
       {openMenu && <Navigation isMobile handleToggleMenu={handleToggleMenu} />}
       <Navigation />
       {!openMenu && <Outlet />}

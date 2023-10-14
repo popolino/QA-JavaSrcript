@@ -1,10 +1,7 @@
 import classes from "./Main.module.scss";
 import clsx from "clsx";
 import React, { useState } from "react";
-import {
-  EyeOutlined,
-} from "@ant-design/icons";
-
+import { EyeOutlined } from "@ant-design/icons";
 
 type TQuestionProps = {
   question: string;

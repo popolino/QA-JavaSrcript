@@ -4,7 +4,7 @@ import {
   isPendingAction,
   isRejectedAction,
 } from "../../utils";
-import { TAuthFields, TLoginUserDto, TUser } from "./Authorization.types";
+import { TAuthFields, TLoginUserDto, TUser } from "../../api/index.types";
 import { authorizationApi } from "../../api/authorization.api";
 
 export interface IAuthorizationState {
@@ -114,7 +114,7 @@ export const fetchLogin = createAsyncThunk(
 
 export const fetchAuthMe = createAsyncThunk(
   "authReducer/fetchAuthMe",
-  async (_, { rejectWithValue, dispatch}) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
       const response = await authorizationApi.authMe();
       dispatch(authorizationSlice.actions.setIsAuth(true));

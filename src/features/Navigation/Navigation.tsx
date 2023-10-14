@@ -26,21 +26,30 @@ const Navigation: React.FC<TNavigationProps> = ({
   function getItem(
     label: React.ReactNode,
     key: React.Key,
-    onClick: () => void
+    children?: MenuItem[] | null,
+    onClick?: () => void
   ): MenuItem {
     return {
       key,
       label,
+      children,
       onClick,
     } as MenuItem;
   }
 
   const navigate = useNavigate();
   const items: MenuItem[] = [
-    getItem("Учить новые вопросы", "1", () => handleNavigation("/main")),
-    getItem("Повторить вопросы", "2", () => handleNavigation("/training")),
-    getItem("Статистика", "3", () => handleNavigation("/statistics")),
-    getItem("Панель админа", "4", () => handleNavigation("/adminpanel")),
+    getItem("Учить новые вопросы", "1", null, () => handleNavigation("/main")),
+    getItem("Повторить вопросы", "2", null, () =>
+      handleNavigation("/training")
+    ),
+    getItem("Статистика", "3", null, () => handleNavigation("/statistics")),
+    getItem("Панель админа", "4", [
+      getItem("Option 5", "5", null, () => handleNavigation("/createCategory")),
+      getItem("Option 6", "6", null, () =>
+        handleNavigation("/createQuestions")
+      ),
+    ]),
   ];
 
   const handleNavigation = (route: string) => {
@@ -63,9 +72,11 @@ const Navigation: React.FC<TNavigationProps> = ({
         items={items}
       />
 
-      <Button className="button" ghost size="large" onClick={handleLogout}>
-        Выход
-      </Button>
+      <div className="button">
+        <Button ghost size="large" onClick={handleLogout}>
+          Выход
+        </Button>
+      </div>
     </div>
   );
 };

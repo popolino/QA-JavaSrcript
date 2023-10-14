@@ -2,8 +2,8 @@ import Main from "../features/Main/Main";
 import React from "react";
 import Login from "../features/Authorization/Login";
 import Registration from "../features/Authorization/Registration";
-import Training from "../features/Training/Training";
-import AdminPanel from "../features/AdminPanel/AdminPanel";
+import Trainer from "../features/Trainer/Trainer";
+import CreateCategory from "../features/AdminPanel/CreateCategory";
 import Statistics from "../features/Statistics/Statistics";
 
 export const routes = [
@@ -23,7 +23,7 @@ export const routes = [
 
   //Private
   {
-    path: "main",
+    path: "/main",
     label: "main",
     public: false,
     component: <Main />,
@@ -38,7 +38,7 @@ export const routes = [
     path: "/training",
     label: "training",
     public: false,
-    component: <Training />,
+    component: <Trainer />,
   },
   {
     path: "/statistics",
@@ -47,9 +47,9 @@ export const routes = [
     component: <Statistics />,
   },
   {
-    path: "/adminpanel",
-    label: "adminpanel",
+    path: "/createCategory",
+    label: "createCategory",
     public: false,
-    component: <AdminPanel />,
+    component: <CreateCategory />,
   },
 ];

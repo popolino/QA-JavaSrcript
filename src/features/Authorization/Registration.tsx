@@ -7,11 +7,8 @@ import login from "../../assets/img/3249754.png";
 import CustomInput from "./CustomInput";
 import { Button } from "antd";
 import React from "react";
-import { TAuthFields } from "./Authorization.types";
-import {
-  authorizationActions,
-  fetchCreateUser,
-} from "./Authorization.slice";
+import { TAuthFields } from "../../api/index.types";
+import { authorizationActions, fetchCreateUser } from "./Authorization.slice";
 
 const allActions = {
   fetchCreateUser,
