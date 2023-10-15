@@ -1,3 +1,4 @@
+
 export const init = {
   plugins:
     "anchor autocorrect charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount autoresize",
@@ -6,3 +7,7 @@ export const init = {
 };
 
 export const apiKey = "3lbge1yolebi9j427p1wy9vlarmd54jg8jem9xvsb5wcdcdo";
+
+export const handleChange = (label: number, set: (label: number) => void) => {
+  set(label);
+};

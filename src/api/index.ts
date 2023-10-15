@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5050/api",
+  baseURL: "https://qa-api.areaweb.site/api",
 });
 
 axiosInstance.interceptors.request.use(
@@ -9,7 +9,6 @@ axiosInstance.interceptors.request.use(
     const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
-      console.log(config.headers.Authorization);
     }
     return config;
   },

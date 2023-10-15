@@ -28,7 +28,6 @@ const PrivateLayout = () => {
 
   useEffect(() => {
     boundActions.fetchAuthMe();
-    console.log(authUser);
   }, []);
 
   if (!authUser) return <Login />;

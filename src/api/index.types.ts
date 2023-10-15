@@ -36,3 +36,21 @@ export type TCategory = {
     total: number;
   };
 };
+export type TQuestion = {
+  title: string;
+  answer: string;
+  categoryId: number;
+};
+export type TQuestionResponse = {
+  id: number;
+  title: string;
+  answer: string;
+  createdAt: string;
+  updatedAt: string;
+  category: {
+    id: number;
+    name: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+};

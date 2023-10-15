@@ -48,7 +48,6 @@ const authorizationSlice = createSlice({
       state.isAuth = action.payload;
     },
     setAuthUser: (state, action) => {
-      console.log(typeof state.authUser);
       state.authUser = action.payload;
     },
     setLogout: (state) => {

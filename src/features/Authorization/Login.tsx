@@ -23,7 +23,6 @@ const Login = () => {
     defaultValues: { email: "", password: "" },
   });
   const onSubmit: SubmitHandler<TAuthFields> = (data) => {
-    console.log(data);
     boundActions.fetchLogin(data);
   };
   if (isAuth) {

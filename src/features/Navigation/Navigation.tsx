@@ -45,9 +45,9 @@ const Navigation: React.FC<TNavigationProps> = ({
     ),
     getItem("Статистика", "3", null, () => handleNavigation("/statistics")),
     getItem("Панель админа", "4", [
-      getItem("Option 5", "5", null, () => handleNavigation("/createCategory")),
-      getItem("Option 6", "6", null, () =>
-        handleNavigation("/createQuestions")
+      getItem("Создание", "5", null, () => handleNavigation("/createQuestion")),
+      getItem("Редактирование", "6", null, () =>
+        handleNavigation("/editQuestion")
       ),
     ]),
   ];
@@ -72,8 +72,8 @@ const Navigation: React.FC<TNavigationProps> = ({
         items={items}
       />
 
-      <div className="button">
-        <Button ghost size="large" onClick={handleLogout}>
+      <div>
+        <Button ghost size="large" onClick={handleLogout} className="button">
           Выход
         </Button>
       </div>

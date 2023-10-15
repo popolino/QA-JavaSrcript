@@ -9,6 +9,7 @@
   & > ul{
     & > li{
       & > span{
+        font-weight: 500;
         font-size: 1.5rem;
       }
       & > div{
@@ -28,6 +29,13 @@
   }
   & > button{
     width: 100%;
+
+  }
+  & > div{
+    width: 100%;
+    & > button{
+      width: 100% ;
+    }
 
   }
 }

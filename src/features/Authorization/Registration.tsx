@@ -25,7 +25,6 @@ const Registration = () => {
   });
   const onSubmit: SubmitHandler<TAuthFields> = (data) => {
     boundActions.fetchCreateUser(data);
-    console.log(data);
   };
 
   if (isAuth) {

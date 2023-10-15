@@ -3,8 +3,9 @@ import React from "react";
 import Login from "../features/Authorization/Login";
 import Registration from "../features/Authorization/Registration";
 import Trainer from "../features/Trainer/Trainer";
-import CreateCategory from "../features/AdminPanel/CreateCategory";
+import CreateCategoryQuestion from "../features/AdminPanel/CreateCategoryQuestion";
 import Statistics from "../features/Statistics/Statistics";
+import EditQuestion from "../features/AdminPanel/EditQuestion";
 
 export const routes = [
   //Public
@@ -47,9 +48,15 @@ export const routes = [
     component: <Statistics />,
   },
   {
-    path: "/createCategory",
-    label: "createCategory",
+    path: "/createQuestion",
+    label: "createQuestion",
     public: false,
-    component: <CreateCategory />,
+    component: <CreateCategoryQuestion />,
+  },
+  {
+    path: "/editQuestion",
+    label: "editQuestion",
+    public: false,
+    component: <EditQuestion />,
   },
 ];
