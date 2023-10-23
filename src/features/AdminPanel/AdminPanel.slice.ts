@@ -7,12 +7,15 @@ import {
 } from "../../utils";
 import { categoriesApi } from "../../api/categories.api";
 import { questionsApi } from "../../api/questions.api";
+import { questions } from "../../state";
 
 export interface IAdminPanelState {
   categories: TCategory[];
   category: TCategory | null;
+  selectedQuestions: TQuestion[];
+  question: TQuestion | null;
   message: any;
-  statusCreate: string;
+  metaStatus: string;
   status: "idle" | "loading" | "failed";
   meta: {
     fetching: boolean;
@@ -25,8 +28,10 @@ export interface IAdminPanelState {
 export const initialState: IAdminPanelState = {
   categories: [],
   category: null,
+  selectedQuestions: [],
+  question: null,
   message: "",
-  statusCreate: "idle",
+  metaStatus: "idle",
   status: "idle",
   meta: {
     fetching: false,
@@ -46,19 +51,52 @@ const adminPanelSlice = createSlice({
     setCategory: (state, action) => {
       state.category = action.payload;
     },
+    setSelectedQuestions: (state, action) => {
+      state.selectedQuestions = action.payload;
+    },
+    setQuestion: (state, action) => {
+      state.question = action.payload;
+    },
   },
   extraReducers: (builder) => {
+    /// EDIT CATEGORY
+    builder.addCase(fetchEditCategory.pending, (state) => {
+      state.meta.creating = true;
+      state.metaStatus = "loading";
+    });
+    builder.addCase(fetchEditCategory.fulfilled, (state) => {
+      state.meta.creating = false;
+      state.metaStatus = "idle";
+    });
+    builder.addCase(fetchEditCategory.rejected, (state) => {
+      state.meta.creating = false;
+    });
+    /// DELETE CATEGORY
+    builder.addCase(fetchDeleteCategory.pending, (state) => {
+      state.meta.creating = true;
+      state.metaStatus = "loading";
+    });
+    builder.addCase(fetchDeleteCategory.fulfilled, (state) => {
+      state.meta.creating = false;
+      state.metaStatus = "idle";
+    });
+    builder.addCase(fetchDeleteCategory.rejected, (state) => {
+      state.meta.creating = false;
+    });
+    /// CREATE QUESTION
     builder.addCase(fetchCreateQuestion.pending, (state) => {
       state.meta.creating = true;
-      state.statusCreate = "loading";
+      state.metaStatus = "loading";
     });
     builder.addCase(fetchCreateQuestion.fulfilled, (state) => {
       state.meta.creating = false;
-      state.statusCreate = "idle";
+      state.metaStatus = "idle";
     });
     builder.addCase(fetchCreateQuestion.rejected, (state) => {
       state.meta.creating = false;
     });
+    //------------------------------------------------//
+    //------------------------------------------------//
     builder.addMatcher(isPendingAction, (state) => {
       state.status = "loading";
       state.message = "";
@@ -107,6 +145,35 @@ export const fetchCreateQuestion = createAsyncThunk(
     }
   }
 );
+export const fetchGetQuestions = createAsyncThunk(
+  "adminPanelReducer/getQuestions",
+  async (categoryId: number, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await questionsApi.getQuestions();
+      const selectedQuestions = response.data.filter(
+        (question) => question.category.id === categoryId
+      );
+      console.log(selectedQuestions);
+      dispatch(adminPanelActions.setSelectedQuestions(selectedQuestions));
+      return selectedQuestions;
+    } catch (e: any) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+export const fetchGetOneQuestion = createAsyncThunk(
+  "adminPanelReducer/getOneQuestion",
+  async (id: number, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await questionsApi.getOneQuestion(id);
+      dispatch(adminPanelActions.setQuestion(response.data));
+      console.log(response.data);
+      return response.data;
+    } catch (e: any) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
 
 export const fetchGetOneCategory = createAsyncThunk(
   "adminPanelReducer/getOneCategory",
@@ -123,10 +190,7 @@ export const fetchGetOneCategory = createAsyncThunk(
 
 export const fetchEditCategory = createAsyncThunk(
   "adminPanelReducer/editCategory",
-  async (
-    { id, name }: { id: number; name: string },
-    { rejectWithValue }
-  ) => {
+  async ({ id, name }: { id: number; name: string }, { rejectWithValue }) => {
     try {
       const response = await categoriesApi.editCategory(id, name);
       console.log(id, name);
@@ -139,7 +203,7 @@ export const fetchEditCategory = createAsyncThunk(
 
 export const fetchDeleteCategory = createAsyncThunk(
   "adminPanelReducer/deleteCategory",
-  async (id: number, { rejectWithValue}) => {
+  async (id: number, { rejectWithValue }) => {
     try {
       const response = await categoriesApi.deleteCategory(id);
       return response.data;

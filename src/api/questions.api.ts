@@ -5,7 +5,10 @@ export const questionsApi = {
   createQuestion: (values: TQuestion) => {
     return axiosInstance.post<TQuestionResponse>("questions", values);
   },
-  getCategories: () => {
-    return axiosInstance.get<TCategory[]>("categories?withQuestions=true");
+  getQuestions: () => {
+    return axiosInstance.get<TQuestionResponse[]>(`questions`);
+  },
+  getOneQuestion: (id: number) => {
+    return axiosInstance.get<TQuestionResponse[]>(`questions/${id}`);
   },
 };

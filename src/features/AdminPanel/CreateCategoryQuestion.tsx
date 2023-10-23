@@ -29,8 +29,8 @@ const CreateCategoryQuestion = () => {
   const categories = useAppSelector(
     (state) => state.adminPanelReducer.categories
   );
-  const statusCreate = useAppSelector(
-    (state) => state.adminPanelReducer.statusCreate
+  const metaStatus = useAppSelector(
+    (state) => state.adminPanelReducer.metaStatus
   );
   const [selectedTheme, setSelectedTheme] = useState<number>(1);
   const [answerText, setAnswerText] = useState<string>("");
@@ -56,7 +56,8 @@ const CreateCategoryQuestion = () => {
     boundActions.fetchGetCategories();
   };
   useEffect(() => console.log(theme), [theme]);
-  if (statusCreate === "loading")
+  console.log(answerValue);
+  if (metaStatus === "loading")
     return (
       <div className="loading-icon">
         <LoadingOutlined />

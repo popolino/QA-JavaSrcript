@@ -5,6 +5,7 @@ import Registration from "../features/Authorization/Registration";
 import Trainer from "../features/Trainer/Trainer";
 import CreateCategoryQuestion from "../features/AdminPanel/CreateCategoryQuestion";
 import Statistics from "../features/Statistics/Statistics";
+import EditCategory from "../features/AdminPanel/EditCategory";
 import EditQuestion from "../features/AdminPanel/EditQuestion";
 
 export const routes = [
@@ -52,6 +53,12 @@ export const routes = [
     label: "createQuestion",
     public: false,
     component: <CreateCategoryQuestion />,
+  },
+  {
+    path: "/editCategory",
+    label: "editCategory",
+    public: false,
+    component: <EditCategory />,
   },
   {
     path: "/editQuestion",

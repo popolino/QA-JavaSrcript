@@ -46,7 +46,10 @@ const Navigation: React.FC<TNavigationProps> = ({
     getItem("Статистика", "3", null, () => handleNavigation("/statistics")),
     getItem("Панель админа", "4", [
       getItem("Создание", "5", null, () => handleNavigation("/createQuestion")),
-      getItem("Редактирование", "6", null, () =>
+      getItem("Редактирование темы", "6", null, () =>
+        handleNavigation("/editCategory")
+      ),
+      getItem("Редактирование вопроса", "7", null, () =>
         handleNavigation("/editQuestion")
       ),
     ]),
